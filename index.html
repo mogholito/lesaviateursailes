@@ -22,16 +22,13 @@
             background-attachment: fixed;
         }
 
-        /* Background overlay for better contrast */
-        body::before {
-            content: '';
+        /* Background SVG */
+        #background-sky {
             position: absolute;
             top: 0;
             left: 0;
-            right: 0;
-            bottom: 0;
-            background: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 800"><defs><linearGradient id="skyGradient" x1="0%" y1="0%" x2="0%" y2="100%"><stop offset="0%" style="stop-color:%234A90E2;stop-opacity:1" /><stop offset="100%" style="stop-color:%2387CEEB;stop-opacity:1" /></linearGradient></defs><rect width="1200" height="800" fill="url(%23skyGradient)"/><circle cx="100" cy="100" r="30" fill="white" opacity="0.7"/><circle cx="300" cy="150" r="40" fill="white" opacity="0.6"/><circle cx="500" cy="80" r="35" fill="white" opacity="0.7"/><circle cx="700" cy="120" r="45" fill="white" opacity="0.5"/><circle cx="900" cy="100" r="30" fill="white" opacity="0.6"/><circle cx="1100" cy="140" r="38" fill="white" opacity="0.7"/></svg>') no-repeat center center;
-            background-size: cover;
+            width: 100%;
+            height: 100%;
             z-index: 0;
         }
 
@@ -79,6 +76,23 @@
     </style>
 </head>
 <body>
+    <!-- Background Sky SVG -->
+    <svg id="background-sky" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 800" preserveAspectRatio="xMidYMid slice">
+        <defs>
+            <linearGradient id="skyGradient" x1="0%" y1="0%" x2="0%" y2="100%">
+                <stop offset="0%" style="stop-color:#4A90E2;stop-opacity:1" />
+                <stop offset="100%" style="stop-color:#87CEEB;stop-opacity:1" />
+            </linearGradient>
+        </defs>
+        <rect width="1200" height="800" fill="url(#skyGradient)"/>
+        <circle cx="100" cy="100" r="30" fill="white" opacity="0.7"/>
+        <circle cx="300" cy="150" r="40" fill="white" opacity="0.6"/>
+        <circle cx="500" cy="80" r="35" fill="white" opacity="0.7"/>
+        <circle cx="700" cy="120" r="45" fill="white" opacity="0.5"/>
+        <circle cx="900" cy="100" r="30" fill="white" opacity="0.6"/>
+        <circle cx="1100" cy="140" r="38" fill="white" opacity="0.7"/>
+    </svg>
+
     <!-- Flying Logo 1 -->
     <div id="logo1" class="logo">
         <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 120 120">
@@ -136,8 +150,11 @@
         class FlyingLogo {
             constructor(elementId) {
                 this.element = document.getElementById(elementId);
-                this.x = parseFloat(getComputedStyle(this.element).left) || Math.random() * (window.innerWidth - 120);
-                this.y = parseFloat(getComputedStyle(this.element).top) || Math.random() * (window.innerHeight - 120);
+                
+                // Get initial position using getBoundingClientRect for accurate positioning
+                const rect = this.element.getBoundingClientRect();
+                this.x = rect.left;
+                this.y = rect.top;
                 
                 // Random initial direction and speed
                 const angle = Math.random() * 2 * Math.PI;
