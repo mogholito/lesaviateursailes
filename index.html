@@ -1,183 +1,280 @@
 <!DOCTYPE html>
 <html lang="fr">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Les Aviateurs Ailés</title>
-    <style>
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-        }
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Les Aviateurs Ailés</title>
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
 
-        body {
-            font-family: Arial, sans-serif;
-            height: 100vh;
-            overflow: hidden;
-            position: relative;
-            background: linear-gradient(180deg, #1e90ff 0%, #87CEEB 100%);
-            background-size: cover;
-            background-position: center;
-            background-attachment: fixed;
-        }
+    body {
+      font-family: Arial, sans-serif;
+      height: 100vh;
+      overflow: hidden;
+      position: relative;
+      background: linear-gradient(180deg, #1e90ff 0%, #87CEEB 100%);
+      background-size: cover;
+      background-position: center;
+      background-attachment: fixed;
+    }
 
-        /* Background Image */
-        #background-sky {
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            z-index: 0;
-            object-fit: cover;
-            object-position: center;
-        }
+    /* Background Image */
+    #background-sky {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      z-index: 0;
+      object-fit: cover;
+      object-position: center;
+    }
 
-        .logo {
-            position: absolute;
-            width: 240px;
-            height: 240px;
-            z-index: 10;
-            transition: transform 0.1s linear;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-        }
+    .logo {
+      position: absolute;
+      width: 240px;
+      height: 240px;
+      z-index: 10;
+      transition: transform 0.1s linear;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
 
-        .logo img {
-            width: 50%;
-            height: 50%;
-            object-fit: contain;
-        }
+    .logo img {
+      width: 50%;
+      height: 50%;
+      object-fit: contain;
+    }
 
-        #logo2 img {
-            width: 225%;
-            height: 225%;
-        }
+    #logo2 img {
+      width: 225%;
+      height: 225%;
+    }
 
-        #logo1 {
-            top: 20%;
-            left: 20%;
-        }
+    #logo1 {
+      top: 20%;
+      left: 20%;
+    }
 
-        #logo2 {
-            top: 50%;
-            left: 60%;
-        }
+    #logo2 {
+      top: 50%;
+      left: 60%;
+    }
 
-        footer {
-            position: fixed;
-            bottom: 0;
-            left: 0;
-            right: 0;
-            background: rgba(0, 13, 15, 0.25);
-            color: rgba(255,2555,255, 0.5);
-            text-align: center;
-            padding: 20px;
-            z-index: 100;
-        }
+    footer {
+      position: fixed;
+      bottom: 0;
+      left: 0;
+      right: 0;
+      background: rgba(0, 13, 15, 0.25);
+      color: rgba(255, 2555, 255, 0.5);
+      text-align: center;
+      padding: 20px;
+      z-index: 100;
+    }
 
-        footer a {
-            color: #333c62;
-            text-decoration: none;
-            font-size: 18px;
-            transition: color 0.3s ease;
-        }
+    footer a {
+      color: #333c62;
+      text-decoration: none;
+      font-size: 18px;
+      transition: color 0.3s ease;
+    }
 
-        footer a:hover {
-            color: #fff;
-            text-decoration: underline;
-        }
-    </style>
+    footer a:hover {
+      color: #fff;
+      text-decoration: underline;
+    }
+
+    /* Speech bubble */
+    #speech-bubble {
+      position: absolute;
+      background: white;
+      color: #333c62;
+      padding: 10px 20px;
+      border-radius: 20px;
+      font-size: 18px;
+      font-weight: bold;
+      box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+      z-index: 20;
+      display: none;
+      pointer-events: none;
+    }
+
+    #speech-bubble::after {
+      content: '';
+      position: absolute;
+      bottom: -10px;
+      left: 50%;
+      transform: translateX(-50%);
+      width: 0;
+      height: 0;
+      border-left: 10px solid transparent;
+      border-right: 10px solid transparent;
+      border-top: 10px solid white;
+    }
+  </style>
 </head>
 <body>
-    <!-- Background Image -->
-    <img id="background-sky" src="img/vladimir-anikeev-unsplash-1920.webp" alt="Background">
+  <!-- Background Image -->
+  <img id="background-sky" src="img/vladimir-anikeev-unsplash-1920.webp" alt="Background">
 
-    <!-- Flying Logo 1 -->
-    <div id="logo1" class="logo">
-        <img src="img/lesaviat_pic.svg" alt="Logo">
-    </div>
+  <!-- Speech bubble -->
+  <div id="speech-bubble">Hello!</div>
 
-    <!-- Flying Logo 2 -->
-    <div id="logo2" class="logo">
-        <img src="img/lesaviateursailes.svg" alt="Logo">
-    </div>
+  <!-- Flying Logo 1 -->
+  <div id="logo1" class="logo">
+    <img src="img/lesaviat_pic.svg" alt="Logo">
+  </div>
 
-    <footer>
-        <p><a href="mailto:hello@lesaviateursailes.com">les aviateurs ailés</a> &copy; <span id="year"></span></p>
-    </footer>
+  <!-- Flying Logo 2 -->
+  <div id="logo2" class="logo">
+    <img src="img/lesaviateursailes.svg" alt="Logo">
+  </div>
 
-    <script>
-        // Animation logic for flying logos
-        class FlyingLogo {
-            constructor(elementId) {
-                this.element = document.getElementById(elementId);
+  <footer>
+    <p><a href="mailto:hello@lesaviateursailes.com">les aviateurs ailés</a> &copy; <span id="year"></span></p>
+  </footer>
 
-                // Get initial position using getBoundingClientRect for accurate positioning
-                const rect = this.element.getBoundingClientRect();
-                this.x = rect.left;
-                this.y = rect.top;
+  <script>
+    // Animation logic for flying logos
+    class FlyingLogo {
+      constructor(elementId, draggable = false) {
+        this.element = document.getElementById(elementId);
+        this.isDragging = false;
+        this.dragOffsetX = 0;
+        this.dragOffsetY = 0;
 
-                // Random initial direction and speed
-                const angle = Math.random() * 2 * Math.PI;
-                this.vx = Math.cos(angle) * (0.25 + Math.random() * 0.75);
-                this.vy = Math.sin(angle) * (0.25 + Math.random() * 0.75);
+        // Get initial position using getBoundingClientRect for accurate positioning
+        const rect = this.element.getBoundingClientRect();
+        this.x = rect.left;
+        this.y = rect.top;
 
-                this.element.style.left = this.x + 'px';
-                this.element.style.top = this.y + 'px';
-            }
+        // Random initial direction and speed
+        const angle = Math.random() * 2 * Math.PI;
+        this.vx = Math.cos(angle) * (0.25 + Math.random() * 0.75);
+        this.vy = Math.sin(angle) * (0.25 + Math.random() * 0.75);
 
-            update() {
-                // Update position
-                this.x += this.vx;
-                this.y += this.vy;
+        this.element.style.left = this.x + 'px';
+        this.element.style.top = this.y + 'px';
 
-                // Bounce off edges
-                if (this.x <= 0 || this.x >= window.innerWidth - 120) {
-                    this.vx *= -1;
-                    this.x = Math.max(0, Math.min(this.x, window.innerWidth - 120));
-                }
-                if (this.y <= 0 || this.y >= window.innerHeight - 120 - 60) { // 60px for footer
-                    this.vy *= -1;
-                    this.y = Math.max(0, Math.min(this.y, window.innerHeight - 120 - 60));
-                }
+        // Add draggable functionality
+        if (draggable) {
+          this.element.style.cursor = 'grab';
+          this.setupDragListeners();
+        }
+      }
 
-                // Randomly change direction slightly for more natural movement
-                if (Math.random() < 0.02) {
-                    this.vx += (Math.random() - 0.5) * 0.5;
-                    this.vy += (Math.random() - 0.5) * 0.5;
+      setupDragListeners() {
+        const bubble = document.getElementById('speech-bubble');
 
-                    // Limit speed
-                    const speed = Math.sqrt(this.vx * this.vx + this.vy * this.vy);
-                    if (speed > 1.5) {
-                        this.vx = (this.vx / speed) * 1.5;
-                        this.vy = (this.vy / speed) * 1.5;
-                    }
-                }
+        this.element.addEventListener('mousedown', (e) => {
+          this.isDragging = true;
+          this.element.style.cursor = 'grabbing';
+          this.dragOffsetX = e.clientX - this.x;
+          this.dragOffsetY = e.clientY - this.y;
 
-                // Apply position
-                this.element.style.left = this.x + 'px';
-                this.element.style.top = this.y + 'px';
-            }
+          // Show speech bubble
+          bubble.style.display = 'block';
+          this.updateBubblePosition(bubble);
+
+          e.preventDefault();
+        });
+
+        document.addEventListener('mousemove', (e) => {
+          if (this.isDragging) {
+            this.x = e.clientX - this.dragOffsetX;
+            this.y = e.clientY - this.dragOffsetY;
+
+            // Keep within bounds
+            this.x = Math.max(0, Math.min(this.x, window.innerWidth - 240));
+            this.y = Math.max(0, Math.min(this.y, window.innerHeight - 240 - 60));
+
+            this.element.style.left = this.x + 'px';
+            this.element.style.top = this.y + 'px';
+
+            // Update bubble position
+            this.updateBubblePosition(bubble);
+          }
+        });
+
+        document.addEventListener('mouseup', () => {
+          if (this.isDragging) {
+            this.isDragging = false;
+            this.element.style.cursor = 'grab';
+
+            // Hide speech bubble
+            bubble.style.display = 'none';
+          }
+        });
+      }
+
+      updateBubblePosition(bubble) {
+        // Position bubble above the logo
+        const bubbleX = this.x + 120 - (bubble.offsetWidth / 2);
+        const bubbleY = this.y - bubble.offsetHeight + 30;
+        bubble.style.left = bubbleX + 'px';
+        bubble.style.top = bubbleY + 'px';
+      }
+
+      update() {
+        // Skip animation while dragging
+        if (this.isDragging) {
+          return;
         }
 
-        // Initialize flying logos
-        const logo1 = new FlyingLogo('logo1');
-        const logo2 = new FlyingLogo('logo2');
+        // Update position
+        this.x += this.vx;
+        this.y += this.vy;
 
-        // Animation loop
-        function animate() {
-            logo1.update();
-            logo2.update();
-            requestAnimationFrame(animate);
+        // Bounce off edges
+        if (this.x <= 0 || this.x >= window.innerWidth - 240) {
+          this.vx *= -1;
+          this.x = Math.max(0, Math.min(this.x, window.innerWidth - 240));
+        }
+        if (this.y <= 0 || this.y >= window.innerHeight - 240 - 60) { // 60px for footer
+          this.vy *= -1;
+          this.y = Math.max(0, Math.min(this.y, window.innerHeight - 240 - 60));
         }
 
-        // Set the current year in the footer
-        document.getElementById('year').textContent = new Date().getFullYear();
+        // Randomly change direction slightly for more natural movement
+        if (Math.random() < 0.02) {
+          this.vx += (Math.random() - 0.5) * 0.5;
+          this.vy += (Math.random() - 0.5) * 0.5;
 
-        animate();
-    </script>
+          // Limit speed
+          const speed = Math.sqrt(this.vx * this.vx + this.vy * this.vy);
+          if (speed > 1.5) {
+            this.vx = (this.vx / speed) * 1.5;
+            this.vy = (this.vy / speed) * 1.5;
+          }
+        }
+
+        // Apply position
+        this.element.style.left = this.x + 'px';
+        this.element.style.top = this.y + 'px';
+      }
+    }
+
+    // Initialize flying logos - logo1 is draggable
+    const logo1 = new FlyingLogo('logo1', true);
+    const logo2 = new FlyingLogo('logo2', false);
+
+    // Animation loop
+    function animate() {
+      logo1.update();
+      logo2.update();
+      requestAnimationFrame(animate);
+    }
+
+    // Set the current year in the footer
+    document.getElementById('year').textContent = new Date().getFullYear();
+
+    animate();
+  </script>
 </body>
 </html>

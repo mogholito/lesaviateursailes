@@ -7,6 +7,8 @@ This is a parking/landing page for the **lesaviateursailes.com** domain.
 ## Features
 
 - Animated flying logos with smooth movement
+- **Interactive draggable logo** - grab and move the airplane logo anywhere on the screen
+- Speech bubble appears with "Hello!" when dragging the logo
 - Custom SVG graphics (airplane and logo)
 - High-quality WebP background image (1920px)
 - Responsive design with fixed footer
